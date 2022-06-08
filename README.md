@@ -1,2 +1,2 @@
 # image-augmentation
-Python image segmentation module with rust Rust concurency injection
+Python image segmentation module with rust Rust concurrency injection
