@@ -1,10 +1,9 @@
-import rust_ext
-import numpy as np
-import matplotlib.pyplot as plt
-
-
 # print(image_augmentation.sum_as_string(5, 20))
 import os
+
+import matplotlib.pyplot as plt
+import numpy as np
+import rust_ext
 from PIL import Image
 
 IMG_DIR = "images"

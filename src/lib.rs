@@ -1,14 +1,12 @@
-use std::borrow::{Borrow, BorrowMut};
-
 use image::{imageops, RgbImage};
 use numpy::ndarray::{Array3, Axis};
-use numpy::{IntoPyArray, PyArray3, PyArray4};
+use numpy::PyArray4;
 use pyo3::prelude::{pymodule, PyModule, PyResult, Python};
 
 #[pymodule]
 fn rust_ext(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
     #[pyfn(m)]
-    fn process<'py>(py: Python<'py>, x: &PyArray4<u8>) {
+    fn process<'py>(_py: Python<'py>, x: &PyArray4<u8>) {
         let mut x = unsafe { x.as_array_mut() };
         // let mut y = x.axis_iter_mut(Axis(0)).next().unwrap();
         // &y * 1;
