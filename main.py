@@ -27,18 +27,19 @@ print(images[1][0])
 print("=" * 50)
 
 # print(images.shape)
-rust_ext.process(images)
 
 print(images[0][0])
 print(images[1][0])
 # print(abc.shape)
 
-# # f = np.array([0.0, 1.0])
-# # rust_ext.mult(15.0, f)
-# # print(f)
-# plt.figure(1)
-# plt.imshow(images[0])
-# plt.figure(2)
+# f = np.array([0.0, 1.0])
+# rust_ext.mult(15.0, f)
+# print(f)
 
-# plt.imshow(abc)
-# plt.show()
+
+plt.figure(1)
+plt.imshow(images[0])
+rust_ext.process(images)
+plt.figure(2)
+plt.imshow(images[0])
+plt.show()

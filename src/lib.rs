@@ -1,3 +1,5 @@
+use std::borrow::{Borrow, BorrowMut};
+
 use image::{imageops, RgbImage};
 use numpy::ndarray::{Array3, Axis};
 use numpy::{IntoPyArray, PyArray3, PyArray4};
@@ -21,19 +23,21 @@ fn rust_ext(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
         //     let g = Array3::from_shape_vec((height, width, z), raw_img_buff).unwrap();
         // }
         for mut y in x.axis_iter_mut(Axis(0)) {
-            y.fill(1);
             // y.fill(1);
             // // let mut y = &array.axis_iter_mut(Axis(0)).next().unwrap().to_owned();
-            // assert!(y.is_standard_layout());
-            // let (height, width, z) = y.dim();
-            // let raw = y.to_owned().into_raw_vec();
-            // let mut img = RgbImage::from_raw(width as u32, height as u32, raw)
-            //     .expect("container should have the right size for the image dimensions");
-            // imageops::flip_vertical_in_place(&mut img);
-            // let raw_img = img.into_vec();
-            // y = Array3::from_shape_vec((height, width, z), raw_img)
-            //     .unwrap()
-            //     .view_mut();
+            assert!(y.is_standard_layout());
+            let (height, width, z) = y.dim();
+            let raw = y.to_owned().into_raw_vec();
+            let mut img = RgbImage::from_raw(width as u32, height as u32, raw)
+                .expect("container should have the right size for the image dimensions");
+            imageops::flip_vertical_in_place(&mut img);
+            let raw_img = img.into_vec();
+            Array3::from_shape_vec((height, width, z), raw_img)
+                .unwrap()
+                .move_into(&mut y);
+            // Array3::<u8>::zeros((height, width, z)).move_into(&mut y)
+
+            // y = abc.view_mut();
         }
 
         // y.into_pyarray(py)
