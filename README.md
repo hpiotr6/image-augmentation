@@ -1,7 +1,7 @@
 # image-augmentation
 Moduł do augmentacji zdjęć w wykorzystaniem równoległego przetwarzania w Rust.
 
-Niestety nie udało się osiągnać założeń, jednak udowodniono znaczną róźnicę w przetwarzaniu równoległym, a sekwencyjnym.
+Przetwarzanie równoległe, a sekwencyjne.
 
 
 ![alt text](benchmark.png)
