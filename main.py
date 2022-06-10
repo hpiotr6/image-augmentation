@@ -14,9 +14,7 @@ for image_name in images_filename:
     ).astype("uint8")
     images.append(img)
 
-
 images = np.asarray(images)
-print("=" * 50)
 
 plt.figure(1)
 plt.imshow(images[0])

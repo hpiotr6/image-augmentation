@@ -10,7 +10,7 @@ def contents() -> str:
     IMG_DIR = "images"
     images_filename = os.listdir(IMG_DIR)
     images = []
-    for idx, image_name in enumerate(images_filename):
+    for image_name in images_filename:
         img = np.asarray(
             Image.open(os.path.join(IMG_DIR, image_name)).convert("RGB")
         ).astype("uint8")
