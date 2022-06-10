@@ -12,12 +12,13 @@ fn rust_ext(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
 }
 
 mod rust_fn {
+    extern crate ndarray;
     use image::{imageops, RgbImage};
-    use numpy::ndarray::ArrayViewMut4;
-    use numpy::ndarray::{Array3, Axis};
+    use ndarray::parallel::prelude::*;
+    use numpy::ndarray::{Array3, ArrayViewMut4, Axis};
 
     pub fn do_sth(x: &mut ArrayViewMut4<'_, u8>) {
-        for mut y in x.axis_iter_mut(Axis(0)) {
+        x.axis_iter_mut(Axis(0)).into_par_iter().for_each(|mut y| {
             assert!(y.is_standard_layout());
             let (height, width, z) = y.dim();
             let raw = y.to_owned().into_raw_vec();
@@ -28,6 +29,6 @@ mod rust_fn {
             Array3::from_shape_vec((height, width, z), raw_img)
                 .unwrap()
                 .move_into(&mut y);
-        }
+        });
     }
 }

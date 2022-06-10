@@ -372,6 +372,7 @@ dependencies = [
  "num-integer",
  "num-traits",
  "rawpointer",
+ "rayon",
 ]
 
 [[package]]
@@ -681,6 +682,7 @@ name = "rust_ext"
 version = "0.1.0"
 dependencies = [
  "image",
+ "ndarray",
  "num-format",
  "num_cpus",
  "numpy",

@@ -15,3 +15,7 @@ image = "0.24.2"
 num-format = "0.4.0"
 num_cpus = "1.13.1"
 rand = "0.8.5"
+# ndarray = { version = "0.15.0", features = ["blas"] }
+# blas-src = { version = "0.8", features = ["openblas"] }
+# openblas-src = { version = "0.10", features = ["cblas", "system"] }
+ndarray = { version = "0.15.4", features = ["rayon"] }
